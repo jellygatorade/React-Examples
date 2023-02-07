@@ -1,0 +1,170 @@
+React v17 -> v18 has one change that I have needed to make in my entry (index.js) files
+
+React Router v6 has significant changes from v5
+I am learning on v5.4.3 in this course, but the course may cover v5 -> v6 migration
+
+
+
+---
+useState documentation https://reactjs.org/docs/hooks-state.html
+useEffect documentation https://reactjs.org/docs/hooks-effect.html
+-> more on useEffect -> https://www.knowledgehut.com/blog/web-development/how-to-use-react-useeffect
+
+"The second argument of useEffect is an array of dependencies. If you want to control when the effect runs after the component has been mounted, pass an array of dependencies as the second argument. Dependencies are values defined outside useEffect but used inside useEffect.
+
+React will compare the current value of the constraint with the value from the previous render. If they are not equal, the effect is called. This argument is optional. If omitted, the effect will run after each render. You can pass an empty array if you only want the effect to run on the first render."
+
+---
+
+You use curly braces for imports when you aren't importing that module's default export
+
+---
+
+index.js is the first file to execute
+
+React components must be synchronous. They cannot return a promise. They have to directly return jsx.
+
+Components must return a single root element, (adjacent JSX elements must be wrapped in an enclosing tag so that single parent tag is returned)
+
+---
+
+Best explanation of state concept in '48. Working with "State"'
+- If we have data that might change, and changes to that data need to be reflected on the UI, then we need to use state
+- Updating regular JS variables do not work for this, because React only evaluates the components one time on first render - UNLESS an update state function is called
+
+And in '55. Updating State that Depends on the Previous State'
+- If your state update depends on the previous state, you need to pass a function to the set___ function that accepts the previous state as a parameter
+
+---
+Build a custom video player with Reactjs and TailwindCSS | Tutorial
+https://www.youtube.com/watch?v=33Qu3oilteU
+
+---
+
+The "key" property is alwys required in lists in React, so that React can correctly identify and update (if needed) the list elements.
+
+----
+
+Adding or removing CSS classes with useState variables - described in '75 - Settings CSS Classes Dynamically'
+<div className={`form-control ${!isValid ? "invalid" : ""}`}>
+
+And using CSS modules in '80 - Dynamic Styles with CSS Modules'
+<div className={`${styles["form-control"]} ${!isValid && styles.invalid}`}>
+
+
+---
+
+Not seeing uncompiled line numbers in console warnings/errors is related to source maps
+
+---
+
+For Langauge Switching
+
+https://codepen.io/mewmix/pen/bGdNbbZ
+
+https://hco.medium.com/create-a-multi-language-website-with-react-context-api-10f9544bee09
+https://github.com/hcoz/react-context-multilang
+
+https://betterprogramming.pub/react-context-hooks-part-2-ui-language-switch-f4610a21379b
+
+
+---
+Lesson 101-102
+Usage of:
+
+<>
+</>
+
+<React.Fragment>
+</React.Fragment>
+
+---
+Lesson 103-104
+
+Use portals to put overlays, modals, and sidedrawers different places in the DOM tree (not deeply nested) to make semantic HTML better
+---
+Lesson 109 - "Side effects"
+
+React's main job is to render UI, react to user input, and re-render the UI when needed
+Examples:
+Evaluate and render jsx
+Manage state and props
+React to user events and input
+Re-evaluate component upon state and prop changes
+
+Side effects might be:
+Store data in browser storage
+Send Http request to backend servers
+Set and manage timers
+
+Side effects are tasks that happen outside of the normal component evaluation and render cycle - especially since they might block/delay rendering (e.g. http requests)
+
+---
+
+Lesson 113 - useEffect cleanup function
+- cleanup function runs before every useEffect execution, and when the component unmounts
+
+---
+
+Lesson 115 - 119 
+useReducer() can be used as a replacement for useState() if you need "more powerful state management"
+
+Genearlly you will know when you need useReducer over useState - when useState becomes cumbersome or you're getting a lot of bugs / unintended behaviors
+
+useReducer should be considered if you have related pieces of state data - can be helpful if you have more complex state updates
+
+!!!
+useReducer works exactly like useState, except for that instead using a setWhatever function, you use a Dispatch function to pass data to a Reducer function (which returns the new state)
+The Dispatch function works within the component, the Reducer function generally is defined outside of the component
+The reducer function recieves the previous state as first parameter and returns the new state
+So it's just like useState with an extra step
+
+---
+
+Lesson 126 - "Rules of Hooks"
+
+Only use React Hooks in React Components and within custom hooks
+Only use React Hooks in the top level of React Components - don't call them in nested functions or in any block statements
+
+Always add everything you refer to inside of useEffect as a dependency
+
+---
+
+Lesson 128 - forward Refs (React.forwardRef) and useImperativeHandle
+- These should be avoided at all costs but do work.
+
+---
+
+Section 12 - A look behind the scenes of React and optimization techniques
+
+This section is really good at explaining when component re-evaluation and re-rendering happen!
+State changes and state batching!
+When to use useCallback! React.memo()! and useMemo()!
+
+- React components are re-executed when a useState state variable changes, and when its props change
+- They are also re-executed if a parent component containing them re-executes -> and this would continue down the component tree if it contains react components as children
+
+- You can prevent this re-execution with React.memo()
+- React.memo() is for functional components (not class-based components)
+- React.memo() tell React to look at the props the passed component gets, and check the new value for all those props, and compare them - and only if the value of a prop changed then it re-evaluates the component
+- React.memo() trades the cost of re-evaluating the component, with the cost of re-evaluating props 
+- These costs depends on the complexity of the component, the number of child components it has, and the number of props
+- If you expect your props to change a lot and depend on them changing for re-rendering, React.memo() just adds an extra cost of re-evaluating them every time instead of just going ahead with the component execution
+
+Lesson 156 - useCallback() and its Dependencies - explains why you need to re-define functions wrapped by useCallback when dependencies change
+This is very important to understand how JavaScript functions work as closures!
+
+Functions are objects in JavaScript and thus reference types (not primitive values)
+
+Lesson 159 - Understanding State Scheduling and Batching
+
+Lesson 160 - useMemo();
+useMemo() is different from React.memo()
+useMemo allows you to memo-ize (store) any kind of data (just like useCallback does but it is specific for functions)
+
+---
+
+Section 15: Building Custom React Hooks
+Creating custom components allows you to refer similar logic that is used by multiple components together, the logic is stored in one hook and your components call that new custom hook
+- This is useful for building a hook to send HTTP requests (fetch -> GET, POST, etc), and you can configure the hook to use the GET vs POST method, and POST different data
+

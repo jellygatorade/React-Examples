@@ -1,0 +1,18 @@
+{
+  "non_localized": {
+    "main_video_path": "./common/assets/video/main-video.mp4",
+    "bg_image_path": "./common/assets/images/black-1920x1080.png"
+  },
+  "en-US": {
+    "home_page": {
+      "content_warning": "Content warning: please be advised that this video depicts bodily piercing.",
+      "touch_to_play": "Touch to start the video."
+    }
+  },
+  "es-MX": {
+    "home_page": {
+      "content_warning": "Advertencia de contenido: tenga en cuenta que este video muestra perforaciones corporales.",
+      "touch_to_play": "Toque para iniciar el video."
+    }
+  }
+}

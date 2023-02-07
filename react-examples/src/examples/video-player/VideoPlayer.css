@@ -1,0 +1,40 @@
+.video {
+  width: 100%;
+  max-width: 967px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.video-overlay {
+  position: relative;
+  color: blue;
+}
+
+.video-controls {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.scrub-bar-kk {
+  width: 100%;
+}
+
+.progress-bar {
+  background: white;
+  height: 4px;
+  width: 98%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.progress-bar-inner {
+  background: red;
+  width: 50%;
+  height: 100%;
+}

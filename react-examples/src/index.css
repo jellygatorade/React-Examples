@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .text-shadow-black-3px {
+    text-shadow: 0px 0px 3px #000000;
+  }
+
+  .text-shadow-black-4px {
+    text-shadow: 0px 0px 4px #000000;
+  }
+
+  .text-shadow-black-5px {
+    text-shadow: 0px 0px 5px #000000;
+  }
+}
+
+@font-face {
+  font-family: "CaseText-Light";
+  /* relative path is from tailwind-compiled.css */
+  src: url("../public/assets/font/Case Text/CaseText-Light.otf");
+}
+
+@font-face {
+  font-family: "CaseText-Regular";
+  /* relative path is from tailwind-compiled.css */
+  src: url("../public/assets/font/Case Text/CaseText-Regular.otf");
+}
+
+@font-face {
+  font-family: "CaseText-Medium";
+  /* relative path is from tailwind-compiled.css */
+  src: url("../public/assets/font/Case Text/CaseText-Medium.otf");
+}
+
+@font-face {
+  font-family: "CaseMicro-Regular";
+  /* relative path is from tailwind-compiled.css */
+  src: url("../public/assets/font/Case Micro/CaseMicro-Regular.otf");
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #3f3f3f;
+}
